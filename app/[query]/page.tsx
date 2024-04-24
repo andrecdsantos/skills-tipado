@@ -23,13 +23,20 @@ const formatDate = ( dateString : string) => {
   return formatter.format(date)
 }
 
-export default async function Home() {
-  const repositories = await getRepositories() 
+export default async function Home( { params } : { params : { query:string } }) {
+    const repositories = await getRepositories() 
+    const decodedQuery = decodeURIComponent(params.query)
+    const keywords = decodedQuery.trim().toUpperCase().split(' ')
+    const filteredRepos = repositories.filter(repo=> keywords.every(word=> repo.name.toUpperCase().includes(word)))
   return (
     <>
       <h1 className="text-2xl text-center mb-4">Meus repositórios</h1>
+      <span>{`Resultados da busca por : "${decodedQuery}"`}</span>
+      {filteredRepos.length == 0 ? 
+      <div className="grid items-center justify-center text-4xl">Nenhum resultado encontrado =( </div> 
+      : 
       <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 flex-wrap break-words break-all">
-        {repositories.map(repo => 
+        {filteredRepos.map(repo => 
           <article key={repo.name} className="bg-secondary p-2 ">
             <div>
               <b className="text-tertiary text-lg">Projeto: </b>
@@ -51,6 +58,7 @@ export default async function Home() {
           </article>  
         )}
       </section>
+      }
     </>
   );
 }

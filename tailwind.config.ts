@@ -8,10 +8,24 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      colors: {
+        primary: "rgb(71 85 105)",
+        secondary: "rgb(15 23 42)",
+        tertiary: "rgb(203 213 225)",
+      },
+      keyframes: {
+        endless: {
+          '0%': { transform: 'translateX(0)'},
+          '100%': { transform: 'translateX(50%)'}
+        },
+        endlessReverse: {
+          '0%': { transform: 'translateX(0)'},
+          '100%': { transform: 'translateX(-50%)'},
+        },
+      },
+      animation: {
+        endless: 'endless 105s infinite linear',
+        endlessReverse: 'endlessReverse 105s infinite linear',
       },
     },
   },

@@ -1,0 +1,4 @@
+login valido >> email jose.silva@gmail.com senha 123456
+erro acontecia ao fazer o login invalido
+https://www.google.com/search?q=Unhandled+Runtime+Error+Error%3A+Read+more+at+https%3A%2F%2Ferrors.authjs.dev%23credentialssignin+await+signIn(%27credentials%27%2C+Object.fromEntries(formData))&oq=Unhandled+Runtime+Error+Error%3A+Read+more+at+https%3A%2F%2Ferrors.authjs.dev%23credentialssignin+await+signIn(%27credentials%27%2C+Object.fromEntries(formData))&gs_lcrp=EgZjaHJvbWUyBggAEEUYOdIBCTExMzA1ajBqOagCALACAA&sourceid=chrome&ie=UTF-8#cobssid=s
+https://github.com/nextauthjs/next-auth/issues/9900

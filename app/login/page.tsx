@@ -4,9 +4,12 @@ import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import React from 'react'
 import LoginGoogleBtn from '../components/Login/LoginGoogleBtn'
+import { useFormState } from 'react-dom'
+import { authenticate } from '@/actions/users'
 
 const Login = () => {
-    const searchParams = useSearchParams()
+    const [state, dispatch] = useFormState(authenticate, undefined)//authenticate funcao que criei em actions
+    /* const searchParams = useSearchParams()
     const error = searchParams.get('error')
 
     async function login(e: React.FormEvent<HTMLFormElement>){
@@ -17,11 +20,12 @@ const Login = () => {
             password: formData.get('password')
         }
         signIn('credentials', {...data, callbackUrl:'/'})
-    }
+    } */
+
   return (
     <div className='flex items-center justify-center'>
         <div className='bg-secondary text-secondary p-3 max-w-80 rounded-md grow'>
-            <form onSubmit={login}>
+            <form action={dispatch}>
                 <label htmlFor="email" className='text-white mb-2 block'>e-mail</label>
                 <input 
                     type="text" 
@@ -36,11 +40,11 @@ const Login = () => {
                     placeholder='senha' 
                     className='w-full p-2 mb-2 rounded-md'
                 />
-                {error == 'CredentialsSignin' &&
+                {/* {error == 'CredentialsSignin' &&
                     <div className="h-12 text-xl text-center text-red-500 px-4 mb-2">Email ou senha invalida</div>
-                }
+                } */}
                 <button className='bg-primary hover:bg-tertiary text-white hover:text-secondary w-full p-2 my-2 rounded-md'>Login</button>
-                <Link href={'/'} className='text-white hover:text-tertiary'>Ainda não possui uma conta?</Link>
+                <Link href={'/register-user'} className='text-white hover:text-tertiary'>Ainda não possui uma conta?</Link>
             </form>
                 <LoginGoogleBtn/>
         </div>
